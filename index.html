@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="lv" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Viena darba nedēļa Datorikas fakultātes studenta dzīvē — personīgs ieskats." />
+  <title>Viena darba nedēļa | Datorikas studenta dzīve</title>
+
+  <!-- Google Fonts: distinctive serif typography used in the Figma design -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400&family=Roboto+Serif:wght@300;400&family=Homenaje&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Pāriet uz saturu</a>
+
+  <!-- ====================================================================
+       SITE HEADER  (navy bar with brand + nav + theme toggle)
+       ==================================================================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <div class="site-header__brand">
+        <a href="index.html">Rainers Cīrulis, rc23018</a>
+      </div>
+
+      <nav id="site-nav" class="site-nav" aria-label="Dienu navigācija">
+        <a href="pirmdiena.html">Pirmdiena</a>
+        <a href="otrdiena.html">Otrdiena</a>
+        <a href="tresdiena.html">Trešdiena</a>
+        <a href="ceturtdiena.html">Ceturtdiena</a>
+        <a href="piektdiena.html">Piektdiena</a>
+      </nav>
+
+      <div style="display:flex; gap:.25rem; align-items:center;">
+        <button id="theme-toggle" class="theme-toggle" type="button"
+                aria-label="Pārslēgt tumšo/gaišo režīmu" aria-pressed="false">
+          <!-- Sun icon (visible in dark mode) -->
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <!-- Moon icon (visible in light mode) -->
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <button id="menu-toggle" class="menu-toggle" type="button"
+                aria-label="Atvērt izvēlni" aria-controls="site-nav" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ==================================================================
+         HERO  — Title + description + hero image
+         ================================================================== -->
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero__grid">
+        <div>
+          <h1 id="hero-title" class="hero__title">
+            Viena darba nedēļa Datorikas fakultātes studenta dzīvē
+          </h1>
+          <p class="hero__desc">
+            Redzama katra studenta diena un ieskats tajās. Par katru dienu
+            īsi aprakstīts, kāds parasti ir dienas plāns, ar ko students
+            nodarbojās u.t.t.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="pirmdiena.html">Sākt no pirmdienas</a>
+            <a class="btn btn--secondary" href="#day-picker">Par darbu</a>
+          </div>
+        </div>
+        <!-- Gray placeholder for hero image - replace later when content is ready -->
+        <div class="hero__image" role="img" aria-label="Hero attēls">
+          Hero attēls
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         DAY PICKER  — "Izvēlies dienu!" carousel (desktop) / list (mobile)
+         ================================================================== -->
+    <section id="day-picker" class="day-picker container" aria-labelledby="picker-title">
+      <h2 id="picker-title" class="day-picker__title">Izvēlies dienu!</h2>
+      <p class="day-picker__hint">
+        Lietojiet bultiņas, lai pārvietietos starp dienām
+      </p>
+
+      <div class="day-carousel">
+        <!-- Previous arrow (hidden on mobile) -->
+        <button class="carousel-arrow carousel-arrow--prev" type="button"
+                aria-label="Iepriekšējās dienas">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+
+        <!-- Viewport hides overflow; track holds all 5 day-cards -->
+        <div class="day-carousel__viewport">
+          <div class="day-carousel__track">
+
+            <!-- Pirmdiena -->
+            <a class="day-card day-card--1" href="pirmdiena.html">
+              <div class="day-card__face">
+                <span class="day-card__name">Pirmdiena</span>
+              </div>
+              <div class="day-card__footer">
+                <span class="day-card__insight">Ieskats pirmdienā</span>
+                <span class="day-card__name-mobile mobile-only">Pirmdiena</span>
+                <span class="day-card__summary">Lekcijas, Pusdienas, Kafija</span>
+              </div>
+              <svg class="day-card__arrow mobile-only" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+
+            <!-- Otrdiena -->
+            <a class="day-card day-card--2" href="otrdiena.html">
+              <div class="day-card__face">
+                <span class="day-card__name">Otrdiena</span>
+              </div>
+              <div class="day-card__footer">
+                <span class="day-card__insight">Ieskats otrdienā</span>
+                <span class="day-card__name-mobile mobile-only">Otrdiena</span>
+                <span class="day-card__summary">Sports, Lekcijas, Atpūta</span>
+              </div>
+              <svg class="day-card__arrow mobile-only" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+
+            <!-- Trešdiena -->
+            <a class="day-card day-card--3" href="tresdiena.html">
+              <div class="day-card__face">
+                <span class="day-card__name">Trešdiena</span>
+              </div>
+              <div class="day-card__footer">
+                <span class="day-card__insight">Ieskats trešdienā</span>
+                <span class="day-card__name-mobile mobile-only">Trešdiena</span>
+                <span class="day-card__summary">Sports, Darbs, Lekcijas</span>
+              </div>
+              <svg class="day-card__arrow mobile-only" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+
+            <!-- Ceturtdiena -->
+            <a class="day-card day-card--4" href="ceturtdiena.html">
+              <div class="day-card__face">
+                <span class="day-card__name">Ceturtdiena</span>
+              </div>
+              <div class="day-card__footer">
+                <span class="day-card__insight">Ieskats ceturtdienā</span>
+                <span class="day-card__name-mobile mobile-only">Ceturtdiena</span>
+                <span class="day-card__summary">Mācības, Projekts, Vakariņas</span>
+              </div>
+              <svg class="day-card__arrow mobile-only" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+
+            <!-- Piektdiena -->
+            <a class="day-card day-card--5" href="piektdiena.html">
+              <div class="day-card__face">
+                <span class="day-card__name">Piektdiena</span>
+              </div>
+              <div class="day-card__footer">
+                <span class="day-card__insight">Ieskats piektdienā</span>
+                <span class="day-card__name-mobile mobile-only">Piektdiena</span>
+                <span class="day-card__summary">Atskaite, Draugi, Brīvdienas</span>
+              </div>
+              <svg class="day-card__arrow mobile-only" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Next arrow -->
+        <button class="carousel-arrow carousel-arrow--next" type="button"
+                aria-label="Nākamās dienas">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         ABOUT  — "Par darbu" section, two columns of body text
+         ================================================================== -->
+    <section class="about container" aria-labelledby="about-title">
+      <h2 id="about-title" class="about__title">Par darbu</h2>
+      <div class="about__grid">
+        <p>
+          Šis ir personīgs ieskats vienā nedēļā Datorikas nodaļā — no
+          pirmdienas rīta lekcijas līdz piektdienas atskaitei. Katra diena
+          ir savs stāsts ar saviem izaicinājumiem, mazajām uzvarām un
+          brīžiem, kad nekas nestrādā un viss strādā.
+        </p>
+        <p>
+          Visi teksti, fotogrāfijas un ilustrācijas ir autora paša veidoti.
+          Mērķis nav rādīt ideālu studenta dzīvi, bet gan godīgi parādīt,
+          kā tā izskatās ar visu, kas tai pieder.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       SITE FOOTER  (navy bar)
+       ==================================================================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2026 Rainers Cīrulis</span>
+      <span>rc23018 · Datorikas fakultāte</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,722 @@
+/* =========================================================================
+   Viena darba nedēļa — Stylesheet
+   Author: Rainers Cīrulis (rc23018) — design
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. DESIGN TOKENS  (CSS custom properties for theming)
+   ------------------------------------------------------------------------- */
+:root {
+  /* Brand / structural colors (theme-independent) */
+  --navy:            #001D3F;
+  --navy-hover:      #002a5a;
+  --navy-text:       #F5F1EA;       /* cream text on navy */
+
+  /* Day-accent colors — used both for cards on home and headers on day pages */
+  --day-1-bg:        #E8D5C9;        /* Pirmdiena — peach */
+  --day-2-bg:        #CFD9D5;        /* Otrdiena — sage */
+  --day-3-bg:        #D5CFD9;        /* Trešdiena — lavender */
+  --day-4-bg:        #A48E80;        /* Ceturtdiena — tan */
+  --day-5-bg:        #B7D3E5;        /* Piektdiena — sky */
+
+  /* Typography */
+  --font-display: "Source Serif Pro", "Source Serif 4", Georgia, serif;
+  --font-body:    "Roboto Serif", Georgia, serif;
+  --font-nav:     "Homenaje", "Source Serif Pro", serif;
+
+  /* Sizing */
+  --container:    1024px;
+  --gap-xs: 0.5rem;
+  --gap-sm: 1rem;
+  --gap-md: 1.5rem;
+  --gap-lg: 2.5rem;
+  --gap-xl: 4rem;
+
+  /* Light theme variables (default) */
+  --bg:           #F5F1EA;          /* warm off-white */
+  --bg-alt:       #ffffff;
+  --text:         #0E1116;
+  --text-muted:   #4a4a4a;
+  --border:       #1d1d1d;
+  --button-bg:    #0E1116;
+  --button-text:  #F5F1EA;
+  --card-text:    #0E1116;
+  --card-footer:  #0E1116;          /* dark footer strip on day cards */
+  --card-footer-text: #F5F1EA;
+
+  /* Misc */
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md:    0 6px 20px rgba(0, 0, 0, 0.12);
+  --transition:   200ms ease;
+}
+
+/* Dark theme — applied via [data-theme="dark"] on <html> */
+[data-theme="dark"] {
+  --bg:           #1B1B1B;
+  --bg-alt:       #232323;
+  --text:         #F5F1EA;
+  --text-muted:   #c8c8c8;
+  --border:       #F5F1EA;
+  --button-bg:    #F5F1EA;
+  --button-text:  #0E1116;
+  --card-text:    #0E1116;          /* card faces stay readable (cards are pastel) */
+  --card-footer:  #F5F1EA;
+  --card-footer-text: #0E1116;
+}
+
+/* Smooth theme transition */
+html { transition: background-color var(--transition), color var(--transition); }
+body { transition: background-color var(--transition), color var(--transition); }
+
+/* -------------------------------------------------------------------------
+   2. BASE / RESET
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1 0 auto; }
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 var(--gap-sm);
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0 0 var(--gap-sm); }
+
+/* Accessibility — focus styles */
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+}
+[data-theme="dark"] :focus-visible { outline-color: var(--day-1-bg); }
+
+/* Skip-link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--navy);
+  color: var(--navy-text);
+  z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+/* Visually-hidden utility (for accessible labels) */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* -------------------------------------------------------------------------
+   3. LAYOUT  — container + grid helpers
+   ------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: var(--gap-md);
+  padding-right: var(--gap-md);
+}
+
+/* -------------------------------------------------------------------------
+   4. SITE HEADER  (navy top bar)
+   ------------------------------------------------------------------------- */
+.site-header {
+  background-color: var(--navy);
+  color: var(--navy-text);
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+}
+
+.site-header__brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.site-header__brand a { color: var(--navy-text); }
+.site-header__brand a:hover { text-decoration: none; opacity: 0.85; }
+
+/* Desktop navigation (day links) */
+.site-nav {
+  display: flex;
+  gap: var(--gap-lg);
+  font-family: var(--font-nav);
+  font-size: 1rem;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.site-nav a {
+  color: var(--navy-text);
+  padding: 0.25rem 0;
+  position: relative;
+  transition: opacity var(--transition);
+}
+.site-nav a:hover { text-decoration: none; opacity: 0.7; }
+.site-nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background-color: var(--day-1-bg);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  color: var(--navy-text);
+  transition: background-color var(--transition);
+}
+.theme-toggle:hover { background-color: rgba(255, 255, 255, 0.1); }
+.theme-toggle .icon-sun  { display: none; }
+.theme-toggle .icon-moon { display: block; }
+[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* Mobile menu (hamburger) button — hidden on desktop */
+.menu-toggle {
+  display: none;
+  width: 36px; height: 36px;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy-text);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition);
+}
+.menu-toggle:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+/* -------------------------------------------------------------------------
+   5. SITE FOOTER  (navy bottom bar)
+   ------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--navy);
+  color: var(--navy-text);
+  padding: 1.25rem 0;
+  font-family: var(--font-nav);
+  font-size: 0.9rem;
+  margin-top: var(--gap-xl);
+  flex-shrink: 0;
+}
+
+.site-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  flex-wrap: wrap;
+}
+
+/* -------------------------------------------------------------------------
+   6. HOME PAGE — Hero
+   ------------------------------------------------------------------------- */
+.hero {
+  padding-top: var(--gap-xl);
+  padding-bottom: var(--gap-lg);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+.hero__title {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  margin-bottom: var(--gap-md);
+}
+
+.hero__desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: var(--gap-lg);
+  max-width: 46ch;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--gap-sm);
+  flex-wrap: wrap;
+}
+
+/* The hero image — gray placeholder per spec */
+.hero__image {
+  aspect-ratio: 4 / 3;
+  background-color: #D9D9D9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #555;
+  font-size: 1.25rem;
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------------------------------------
+   7. BUTTONS
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition), background-color var(--transition),
+              color var(--transition), box-shadow var(--transition);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.btn--primary {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+.btn--primary:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn--secondary:hover {
+  text-decoration: none;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+/* -------------------------------------------------------------------------
+   8. HOME PAGE — "Izvēlies dienu!" day-picker
+   ------------------------------------------------------------------------- */
+.day-picker {
+  padding: var(--gap-xl) 0 var(--gap-lg);
+  text-align: center;
+}
+
+.day-picker__title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.day-picker__hint {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: var(--gap-lg);
+}
+
+/* Carousel wrapper — arrows on each side, cards in the middle */
+.day-carousel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.carousel-arrow {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition), background-color var(--transition);
+  flex-shrink: 0;
+}
+.carousel-arrow:hover { transform: scale(1.08); }
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.carousel-arrow:disabled:hover { transform: none; }
+
+/* The viewport hides overflow; the track moves horizontally */
+.day-carousel__viewport {
+  overflow: hidden;
+}
+
+.day-carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * var(--gap-md)) / 3); /* 3 cards visible */
+  gap: var(--gap-md);
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------------------------------------------------------------
+   9. DAY CARD  (used in home page carousel)
+   ------------------------------------------------------------------------- */
+.day-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-align: left;
+  transition: transform var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+  color: var(--card-text);
+}
+.day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.day-card__face {
+  flex: 1;
+  padding: var(--gap-md);
+  display: flex;
+  align-items: flex-end;
+}
+.day-card__face .day-card__name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.day-card__footer {
+  background-color: var(--card-footer);
+  color: var(--card-footer-text);
+  padding: 0.85rem var(--gap-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+.day-card__footer .day-card__summary { display: block; }
+.day-card__footer .day-card__insight {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Day-specific face colors */
+.day-card--1 .day-card__face { background-color: var(--day-1-bg); }
+.day-card--2 .day-card__face { background-color: var(--day-2-bg); }
+.day-card--3 .day-card__face { background-color: var(--day-3-bg); }
+.day-card--4 .day-card__face { background-color: var(--day-4-bg); }
+.day-card--5 .day-card__face { background-color: var(--day-5-bg); }
+
+/* Tan/brown day-4 needs lighter text */
+.day-card--4 .day-card__face .day-card__name { color: #F5F1EA; }
+
+/* -------------------------------------------------------------------------
+   10. HOME PAGE — "Par darbu" about section
+   ------------------------------------------------------------------------- */
+.about {
+  padding: var(--gap-xl) 0;
+}
+
+.about__title {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-weight: 900;
+  margin-bottom: var(--gap-md);
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-lg);
+}
+
+.about__grid p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* -------------------------------------------------------------------------
+   11. DAY DETAIL PAGE
+   ------------------------------------------------------------------------- */
+.day-hero {
+  padding: var(--gap-lg) 0 var(--gap-md);
+  margin-bottom: var(--gap-lg);
+}
+
+/* Background color set per-day via .day-hero--N modifier.
+   The hero strip is always a pastel/tan color, so the text on it must
+   stay dark regardless of theme — otherwise it's unreadable in dark mode. */
+.day-hero--1, .day-hero--2, .day-hero--3, .day-hero--5 {
+  color: #0E1116;     /* keep dark text on pastel bg in all themes */
+}
+.day-hero--1 { background-color: var(--day-1-bg); }
+.day-hero--2 { background-color: var(--day-2-bg); }
+.day-hero--3 { background-color: var(--day-3-bg); }
+.day-hero--4 { background-color: var(--day-4-bg); color: #F5F1EA; }  /* tan needs light text */
+.day-hero--5 { background-color: var(--day-5-bg); }
+
+.day-hero__title {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.day-hero__subtitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* Three text+image sections, alternating image left/right */
+.day-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-lg);
+  align-items: start;
+  margin-bottom: var(--gap-xl);
+}
+
+.day-section__text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.day-section__image {
+  aspect-ratio: 4 / 3;
+  background-color: #D9D9D9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  color: #555;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.day-section__caption {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Alternate image on the right for even-indexed sections (1st, 3rd) and
+   image on the left for the middle (2nd) section. We use modifier classes. */
+.day-section--reverse { direction: rtl; }
+.day-section--reverse > * { direction: ltr; }
+
+/* Day page prev/next nav */
+.day-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  padding-top: var(--gap-lg);
+  border-top: 1px solid var(--border);
+}
+
+.day-nav .btn { flex: 0 1 auto; }
+.day-nav__prev, .day-nav__next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   12. MOBILE STYLES   (<768px)
+   ------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+  .container { padding-left: var(--gap-sm); padding-right: var(--gap-sm); }
+
+  /* HEADER — show hamburger, hide inline nav */
+  .menu-toggle { display: inline-flex; }
+  .site-nav { display: none; }
+
+  /* Mobile menu drawer when toggled open */
+  .site-nav.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--navy);
+    width: min(280px, 80vw);
+    padding: var(--gap-sm);
+    box-shadow: var(--shadow-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .site-nav.is-open a {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .site-nav.is-open a:last-child { border-bottom: none; }
+
+  .site-header { position: relative; }   /* so the absolute menu drops correctly */
+
+  /* HERO — stack vertically */
+  .hero { padding-top: var(--gap-lg); }
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--gap-md);
+  }
+  .hero__image { aspect-ratio: 16 / 10; }
+
+  /* DAY PICKER — switch from carousel to vertical stack of all 5 days */
+  .day-carousel { grid-template-columns: 1fr; }
+  .carousel-arrow { display: none; }   /* no arrows needed when stacked */
+
+  .day-carousel__viewport { overflow: visible; }
+
+  .day-carousel__track {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: 1fr;
+    gap: var(--gap-sm);
+    transform: none !important;    /* override any JS-set transform on mobile */
+  }
+
+  /* Mobile day card — horizontal row layout */
+  .day-card {
+    flex-direction: row;
+    min-height: 0;
+    align-items: stretch;
+    border: 1px solid var(--border);
+    background-color: var(--button-bg);
+    color: var(--button-text);
+  }
+  .day-card__face {
+    flex: 0 0 56px;
+    padding: 0;
+    min-height: 56px;
+  }
+  .day-card__face .day-card__name { display: none; }  /* only show color swatch */
+  .day-card__footer {
+    flex: 1;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .day-card__footer .day-card__name-mobile {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1rem;
+    display: block;
+  }
+  .day-card__footer .day-card__summary {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+  .day-card__arrow {
+    align-self: center;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  /* ABOUT — stack columns */
+  .about__grid { grid-template-columns: 1fr; gap: var(--gap-md); }
+
+  /* DAY DETAIL PAGE — stack image and text */
+  .day-section {
+    grid-template-columns: 1fr;
+    gap: var(--gap-md);
+    margin-bottom: var(--gap-lg);
+  }
+  .day-section--reverse { direction: ltr; }
+  .day-section__image { aspect-ratio: 16 / 10; }
+
+  /* Day nav buttons */
+  .day-nav .btn { font-size: 0.9rem; padding: 0.6rem 0.9rem; }
+
+  /* Buttons full-width-ish */
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { width: 100%; }
+}
+
+/* -------------------------------------------------------------------------
+   13. SMALL POLISH  — reduce motion for users who prefer it
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile-only / desktop-only display helpers */
+.mobile-only { display: none; }
+@media (max-width: 767px) {
+  .mobile-only { display: initial; }
+  .desktop-only { display: none !important; }
+}

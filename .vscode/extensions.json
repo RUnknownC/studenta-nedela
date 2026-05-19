@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "ritwickdey.LiveServer",
+    "esbenp.prettier-vscode",
+    "ecmel.vscode-html-css",
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments",
+    "eamodio.gitlens"
+  ]
+}

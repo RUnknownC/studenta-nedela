@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="lv" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Otrdiena — Īss ieskats dienā" />
+  <title>Otrdiena | Viena darba nedēļa</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400&family=Roboto+Serif:wght@300;400&family=Homenaje&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Pāriet uz saturu</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <div class="site-header__brand">
+        <a href="index.html">Rainers Cīrulis, rc23018</a>
+      </div>
+      <nav id="site-nav" class="site-nav" aria-label="Dienu navigācija">
+        <a href="pirmdiena.html">Pirmdiena</a>
+        <a href="otrdiena.html" aria-current="page">Otrdiena</a>
+        <a href="tresdiena.html">Trešdiena</a>
+        <a href="ceturtdiena.html">Ceturtdiena</a>
+        <a href="piektdiena.html">Piektdiena</a>
+      </nav>
+      <div style="display:flex; gap:.25rem; align-items:center;">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Pārslēgt tumšo/gaišo režīmu" aria-pressed="false">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Atvērt izvēlni" aria-controls="site-nav" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main id="main-content">
+    <!-- DAY HERO (color matches the day) -->
+    <section class="day-hero day-hero--2">
+      <div class="container">
+        <h1 class="day-hero__title">Otrdiena — sports, lekcijas, atpūta</h1>
+        <p class="day-hero__subtitle">Īss ieskats dienā</p>
+      </div>
+    </section>
+
+    <!-- 3 alternating text + image sections -->
+    <div class="container">
+      <article class="day-section">
+        <div class="day-section__text">
+          <h2>Rīta sports</h2>
+          <p>Otrdienā mostos agrāk — pulkstens 6.30. Pirms lekcijām uz sporta zāli vai uz skrejceliņu pie upmalas. Galvai vajag kustību, lai pēc tam varētu mierīgi sēdēt auditorijā. Sākumā tas šķita lieks pūliņš, bet tagad bez tā nedēļa jūtas nepilnīga. {150–200 vārdu apraksts}</p>
+        </div>
+        <figure>
+          <div class="day-section__image" role="img" aria-label="Attēls">Attēls</div>
+          <figcaption class="day-section__caption">Īss attēla apraksts.</figcaption>
+        </figure>
+      </article>
+
+      <article class="day-section day-section--reverse">
+        <div class="day-section__text">
+          <h2>Lekcijas un semināri</h2>
+          <p>Otrdienas lekcijas ir intensīvākas — matemātika, algoritmi un datu struktūras. Semināri prasa iesaistīšanos: jārāda risinājumi, jāpaskaidro doma, jāuzklausa, kā citi tikuši galā ar to pašu uzdevumu pilnīgi citādi. Tieši šajās stundās visvairāk iemācos. {150–200 vārdu apraksts}</p>
+        </div>
+        <figure>
+          <div class="day-section__image" role="img" aria-label="Attēls">Attēls</div>
+          <figcaption class="day-section__caption">Īss attēla apraksts.</figcaption>
+        </figure>
+      </article>
+
+      <article class="day-section">
+        <div class="day-section__text">
+          <h2>Atpūta vakarā</h2>
+          <p>Vakars otrdienā ir klusais brīdis. Mājas darbus atstāju uz vēlāku — vispirms grāmata, sērija vai pastaiga. Kāds saka, ka studentam nevajadzētu būt atpūtas vakaru, bet bez tā nedēļa neizturētos. Reizēm visnozīmīgākās atziņas par mācībām nāk tieši šajos klusajos brīžos. {150–200 vārdu apraksts}</p>
+        </div>
+        <figure>
+          <div class="day-section__image" role="img" aria-label="Attēls">Attēls</div>
+          <figcaption class="day-section__caption">Īss attēla apraksts.</figcaption>
+        </figure>
+      </article>
+
+      <!-- Prev/Next day navigation -->
+      <nav class="day-nav" aria-label="Dienu navigācija">
+        <a class="btn btn--secondary day-nav__prev" href="pirmdiena.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Iepriekšējā diena</a>
+        <a class="btn btn--primary day-nav__next" href="tresdiena.html">Nākamā diena <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <span>© 2026 Rainers Cīrulis</span>
+      <span>rc23018 · Datorikas fakultāte</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
