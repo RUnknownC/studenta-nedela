@@ -1,18 +1,17 @@
-/* ==========================================================================
-   Viena darba nedēļa — Interactions
-   - Theme toggle (light / dark) with localStorage persistence
-   - Mobile menu drawer
-   - Desktop day-carousel arrows
-   ========================================================================== */
+/* 
+   Viena darba nedēļa — galvenā loģika
+   - Theme toggle (light / dark),
+   - Mobile menu burger ikona,
+   - Desktop day-carousel formas bultiņas.
+*/
 
 (function () {
   'use strict';
 
-  /* -------------------- 1. Theme toggle ------------------------------------ */
+  /* Theme toggle  */
   const root = document.documentElement;
   const STORAGE_KEY = 'week-theme';
 
-  // Apply saved or system-preferred theme on load
   function getInitialTheme() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'light' || saved === 'dark') return saved;
@@ -21,7 +20,7 @@
 
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
-    // update aria-pressed on the toggle for accessibility
+    // update toggle for theme
     const btn = document.getElementById('theme-toggle');
     if (btn) btn.setAttribute('aria-pressed', theme === 'dark');
   }
@@ -36,7 +35,7 @@
     localStorage.setItem(STORAGE_KEY, next);
   });
 
-  /* -------------------- 2. Mobile menu drawer ------------------------------ */
+  /*  Mobile menu  */
   document.addEventListener('click', function (e) {
     const toggle = e.target.closest('#menu-toggle');
     const nav = document.getElementById('site-nav');
@@ -47,7 +46,7 @@
       toggle.setAttribute('aria-expanded', isOpen);
       return;
     }
-    // close menu when clicking outside or on a link inside
+    // close menu when clicking outside of the menu.
     if (nav.classList.contains('is-open')) {
       if (!e.target.closest('#site-nav') || e.target.closest('#site-nav a')) {
         nav.classList.remove('is-open');
@@ -71,9 +70,8 @@
     }
   });
 
-  /* -------------------- 3. Day carousel (desktop) -------------------------- */
-  /* On desktop, the track shows 3 cards at a time. Left/Right arrows step the
-     track by 1 card. On mobile, the track stacks (CSS) and arrows are hidden. */
+  /* Day carousel (desktop)*/
+  /* Karuseļa tipa būtība, lai ietu cauri dienām */
   const carousel = document.querySelector('.day-carousel');
   if (carousel) {
     const track  = carousel.querySelector('.day-carousel__track');
@@ -107,7 +105,6 @@
     // Initial state
     requestAnimationFrame(update);
 
-    // Keyboard support on the carousel viewport (←/→)
     const viewport = carousel.querySelector('.day-carousel__viewport');
     if (viewport) {
       viewport.setAttribute('tabindex', '0');
