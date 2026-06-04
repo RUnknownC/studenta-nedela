@@ -13,9 +13,9 @@
   --day-4-bg:        #A48E80;        /* Ceturtdiena — tan */
   --day-5-bg:        #B7D3E5;        /* Piektdiena — sky */
 
-  --font-display: "Source Serif Pro", "Source Serif 4", Georgia, serif;
-  --font-body:    "Roboto Serif", Georgia, serif;
-  --font-nav:     "Homenaje", "Source Serif Pro", serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body:    "Lora", Georgia, serif;
+  --font-nav:     "Inter", system-ui, sans-serif;
 
   /* Sizing */
   --container:    1024px;
@@ -289,7 +289,6 @@ p { margin: 0 0 var(--gap-sm); }
 
   object-fit: cover;
   object-position: center;
-  image-rendering: -webkit-optimize-contrast;
 
   border: 1.5px solid var(--text);
   border-radius: var(--radius-md);
@@ -556,7 +555,6 @@ p { margin: 0 0 var(--gap-sm); }
 
   object-fit: cover;
   object-position: center;
-  image-rendering: -webkit-optimize-contrast;
 
 
   border: 1px solid var(--text);
